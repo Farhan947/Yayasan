@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="Website resmi sekolah, informasi profil, galeri, berita, kontak, dan pendaftaran siswa baru." />
+<title>Website Resmi Sekolah</title>
+<style>
+  /* Reset */
+  * {
+    margin: 0; padding: 0; box-sizing: border-box;
+  }
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #2c3e50;
+    background: #f0f4f8;
+  }
+  a {
+    color: #0077cc;
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+
+  /* Container */
+  .container {
+    max-width: 1100px;
+    margin: 30px auto;
+    padding: 0 20px;
+  }
+
+  /* Header and Navigation */
+  header {
+    background: #0077cc;
+    padding: 20px 0;
+    color: white;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+  }
+  nav {
+    max-width: 1100px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  nav .logo {
+    font-weight: 700;
+    font-size: 1.7rem;
+  }
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+  }
+  nav ul li a {
+    color: white;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 6px 12px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  nav ul li a:hover {
+    background: #005fa3;
+  }
+
+  /* Section Titles */
+  section h2 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+    color: #0077cc;
+    border-bottom: 3px solid #0077cc;
+    display: inline-block;
+    padding-bottom: 6px;
+  }
+
+  /* Profil Sekolah */
+  #profil {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.07);
+  }
+  #profil h3 {
+    margin-top: 15px;
+    color: #004a75;
+  }
+  #profil p {
+    margin: 12px 0 20px;
+    text-align: justify;
+  }
+  #struktur-org {
+    margin-top: 20px;
+    overflow-x: auto;
+  }
+  #struktur-org table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  #struktur-org th, #struktur-org td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    text-align: left;
+  }
+  #struktur-org th {
+    background-color: #0077cc;
+    color: white;
+  }
+
+  /* Sambutan */
+  .sambutan {
+    background: #e6f0fb;
+    border-left: 5px solid #0077cc;
+    padding: 20px;
+    margin-top: 30px;
+    border-radius: 6px;
+    font-style: italic;
+  }
+
+  /* Galeri */
+  #galeri {
+    margin-top: 40px;
+  }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(200px,1fr));
+    gap: 15px;
+  }
+  .gallery-grid img, .gallery-grid video {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+  .gallery-grid img:hover, .gallery-grid video:hover {
+    transform: scale(1.05);
+  }
+
+  /* Berita & Agenda */
+  #berita-agenda {
+    margin-top: 40px;
+  }
+  .berita-item {
+    background: white;
+    padding: 20px;
+    margin-bottom: 18px;
+    border-radius: 10px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.07);
+    transition: box-shadow 0.3s ease;
+  }
+  .berita-item:hover {
+    box-shadow: 0 6px 22px rgba(0,0,0,0.12);
+  }
+  .berita-item h3 {
+    color: #005fa3;
+    margin-bottom: 8px;
+  }
+  .berita-item p {
+    font-size: 0.9rem;
+    color: #444;
+  }
+  .berita-item time {
+    font-size: 0.8rem;
+    color: #888;
+  }
+
+  /* Kontak */
+  #kontak {
+    margin-top: 40px;
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.07);
+  }
+  #kontak ul {
+    list-style: none;
+    line-height: 1.8;
+  }
+  #kontak li {
+    margin-bottom: 12px;
+    font-weight: 600;
+  }
+  #kontak li span {
+    font-weight: 400;
+  }
+
+  /* Form Pendaftaran */
+  #pendaftaran {
+    margin-top: 40px;
+    background: #e6f0fb;
+    padding: 30px;
+    border-radius: 10px;
+  }
+  #pendaftaran form {
+    max-width: 600px;
+    margin: auto;
+  }
+  #pendaftaran label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+  }
+  #pendaftaran input, #pendaftaran select, #pendaftaran textarea {
+    width: 100%;
+    padding: 10px 12px;
+    margin-bottom: 18px;
+    border: 1px solid #ccc;
+    border-radius: 7px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+  }
+  #pendaftaran input:focus, #pendaftaran select:focus, #pendaftaran textarea:focus {
+    outline: none;
+    border-color: #0077cc;
+  }
+  #pendaftaran button {
+    background: #0077cc;
+    color: white;
+    border: none;
+    padding: 14px 22px;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  #pendaftaran button:hover {
+    background: #005fa3;
+  }
+
+  /* Responsive */
+  @media(max-width: 720px) {
+    nav ul {
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+    }
+    nav {
+      flex-direction: column;
+      gap: 10px;
+    }
+    .gallery-grid {
+      grid-template-columns: repeat(auto-fill,minmax(140px,1fr));
+    }
+  }
+
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="container" aria-label="Main navigation">
+    <div class="logo">Sekolah Kita</div>
+    <ul role="menubar">
+      <li role="none"><a href="#profil" role="menuitem">Profil Sekolah</a></li>
+      <li role="none"><a href="#galeri" role="menuitem">Galeri</a></li>
+      <li role="none"><a href="#berita-agenda" role="menuitem">Berita & Agenda</a></li>
+      <li role="none"><a href="#kontak" role="menuitem">Kontak</a></li>
+      <li role="none"><a href="#pendaftaran" role="menuitem">Pendaftaran</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="container" role="main">
+
+  <!-- Profil Sekolah -->
+  <section id="profil" aria-labelledby="profil-title">
+    <h2 id="profil-title">Profil Sekolah</h2>
+    <article>
+      <h3>Visi</h3>
+      <p>Menjadi lembaga pendidikan unggulan yang menghasilkan generasi cerdas, berakhlak mulia, dan siap bersaing di tingkat nasional maupun internasional.</p>
+
+      <h3>Misi</h3>
+      <ul>
+        <li>Menyelenggarakan pendidikan berkualitas berbasis karakter.</li>
+        <li>Mengembangkan potensi siswa secara maksimal melalui kegiatan akademik dan non-akademik.</li>
+        <li>Membangun lingkungan belajar yang kondusif dan inovatif.</li>
+      </ul>
+
+      <h3>Sejarah Singkat</h3>
+      <p>Sekolah ini didirikan pada tahun 1995 dengan tujuan memberikan akses pendidikan berkualitas di wilayah kami. Sejak saat itu, kami terus berupaya meningkatkan kualitas layanan pendidikan.</p>
+
+      <h3>Struktur Organisasi</h3>
+      <div id="struktur-org" role="table" aria-label="Struktur organisasi sekolah">
+        <table>
+          <thead>
+            <tr>
+              <th>Jabatan</th>
+              <th>Nama</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Kepala Sekolah</td><td>Bapak Ahmad Fauzi</td></tr>
+            <tr><td>Wakil Kepala Sekolah</td><td>Ibu Siti Nurhaliza</td></tr>
+            <tr><td>Koordinator Kurikulum</td><td>Bapak Budi Santoso</td></tr>
+            <tr><td>Koordinator Kesiswaan</td><td>Ibu Rina Mulyani</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="sambutan" aria-label="Sambutan Kepala Sekolah">
+        <p>“Selamat datang di Website resmi Sekolah Kita. Kami berkomitmen memberikan pendidikan terbaik untuk masa depan anak-anak bangsa. Mari bergabung dan berkembang bersama kami.” – Kepala Sekolah</p>
+      </div>
+    </article>
+  </section>
+
+  <!-- Galeri Foto / Video -->
+  <section id="galeri" aria-labelledby="galeri-title">
+    <h2 id="galeri-title">Galeri Foto & Video</h2>
+    <div class="gallery-grid">
+      <img src="foto1.jpg" alt="Suasana belajar di kelas" />
+      <img src="foto2.jpg" alt="Kegiatan ekstrakurikuler olahraga" />
+      <img src="foto3.jpg" alt="Siswa menerima penghargaan prestasi" />
+      <video controls>
+        <source src="video-kegiatan.mp4" type="video/mp4" />
+        Browser anda tidak mendukung video.
+      </video>
+    </div>
+  </section>
+
+  <!-- Berita / Agenda -->
+  <section id="berita-agenda" aria-labelledby="berita-title">
+    <h2 id="berita-title">Berita & Agenda Sekolah</h2>
+    <article class="berita-item" role="article" aria-labelledby="berita1-title">
+      <h3 id="berita1-title">Pengumuman Libur Semester</h3>
+      <time datetime="2025-06-15">15 Juni 2025</time>
+      <p>Libur semester akan dimulai tanggal 20 Juni hingga 4 Juli. Semua siswa diminta mempersiapkan diri untuk ujian akhir semester terlebih dahulu.</p>
+    </article>
+    <article class="berita-item" role="article" aria-labelledby="berita2-title">
+      <h3 id="berita2-title">Agenda Lomba Sains Nasional</h3>
+      <time datetime="2025-07-05">5 Juli 2025</time>
+      <p>Tim sains sekolah kita akan mengikuti lomba sains tingkat nasional di Jakarta. Mari kita doakan agar mereka berhasil meraih prestasi terbaik.</p>
+    </article>
+  </section>
+
+  <!-- Kontak -->
+  <section id="kontak" aria-labelledby="kontak-title">
+    <h2 id="kontak-title">Kontak Sekolah</h2>
+    <ul>
+      <li><strong>Alamat:</strong> <span>Jl. Pendidikan No.10, Jakarta Barat, Indonesia</span></li>
+      <li><strong>Telepon:</strong> <span>(021) 555-1234</span></li>
+      <li><strong>Email:</strong> <span>info@sekolahkita.sch.id</span></li>
+      <li><strong>Media Sosial:</strong>
+        <span>
+          <a href="https://instagram.com/sekolahkita" target="_blank" rel="noopener">Instagram</a> | 
+          <a href="https://facebook.com/sekolahkita" target="_blank" rel="noopener">Facebook</a> | 
+          <a href="https://twitter.com/sekolahkita" target="_blank" rel="noopener">Twitter</a>
+        </span>
+      </li>
+    </ul>
+  </section>
+
+  <!-- Formulir Pendaftaran -->
+  <section id="pendaftaran" aria-labelledby="pendaftaran-title">
+    <h2 id="pendaftaran-title">Formulir Pendaftaran Siswa Baru</h2>
+    <form action="/submit-pendaftaran" method="POST" aria-describedby="form-desc">
+      <p id="form-desc">Silakan isi data diri dengan lengkap untuk proses pendaftaran siswa baru.</p>
+
+      <label for="nama">Nama Lengkap:</label>
+      <input type="text" id="nama" name="nama" required placeholder="Masukkan nama lengkap Anda" />
+
+      <label for="tgl-lahir">Tanggal Lahir:</label>
+      <input type="date" id="tgl-lahir" name="tanggal_lahir" required />
+
+      <label for="alamat">Alamat:</label>
+      <textarea id="alamat" name="alamat" rows="3" required placeholder="Masukkan alamat lengkap"></textarea>
+
+      <label for="sekolah-asal">Sekolah Asal:</label>
+      <input type="text" id="sekolah-asal" name="sekolah_asal" required placeholder="Nama sekolah asal" />
+
+      <label for="jurusan">Jurusan yang Dituju:</label>
+      <select id="jurusan" name="jurusan" required>
+        <option value="" disabled selected>Pilih jurusan</option>
+        <option value="ipa">IPA</option>
+        <option value="ips">IPS</option>
+        <option value="bahasa">Bahasa</option>
+      </select>
+
+      <button type="submit">Daftar Sekarang</button>
+    </form>
+  </section>
+
+</main>
+
+<footer>
+  <p>&copy; 2025 Sekolah Kita. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
